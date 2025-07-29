@@ -16,6 +16,24 @@ const goldText = document.querySelector('#goldText');
 const monsterStats = document.querySelector('#monsterStats');
 const monsterHealthText = document.querySelector('#monsterHealthText');
 const monsterNameText = document.querySelector('#monsterNameText');
+const weapons = [{
+        name: 'stick',
+        damage: 5,
+        price: 0
+    },{
+        name: 'dagger',
+        damage: 30,
+        price: 30
+    },{
+        name: 'axe',
+        damage: 50,
+        price: 100
+    },{
+        name: 'sword',
+        damage: 100,
+        price: 200
+    }
+]
 
 // Initialize the game state
 const locations = [
@@ -46,6 +64,7 @@ button3.onclick = fightDragon;
 
 function update(location) {
     text.innerText = location.text;
+
     button1.innerText = location['button text'][0];
     button2.innerText = location['button text'][1];
     button3.innerText = location['button text'][2];
@@ -67,13 +86,43 @@ function goCave() {
     update(locations[2]);
 }
 
-function fightDragon() {
+function buyHealth() {
+    if (gold >= 10) {
+        health += 10;
+        gold -= 10;
+        healthText.innerText = `Health: ${health}`;
+        goldText.innerText = `Gold: ${gold}`;
+    } else {
+        text.innerText = 'You do not have enough gold to buy health.';
+    }
+}
+
+function buyWeapon() {
+    if (gold >= weapons[currentWeapon+1].price && currentWeapon < weapons.length - 1) {
+        currentWeapon++;
+        gold -= weapons[currentWeapon].price;
+        text.innerText = `You bought a ${weapons[currentWeapon].name}.`;
+        intentory.push(weapons[currentWeapon].name);
+        text.innerText += ` Your inventory: ${intentory.join(', ')}.`;
+        goldText.innerText = `Gold: ${gold}`;
+    }else if (currentWeapon >= weapons.length - 1) {
+        text.innerText = 'You already have the best weapon.';
+    }else {
+        text.innerText = 'You do not have enough gold to buy a weapon.';
+    }
+}
+
+function fightSlime() {
     console.log('Fighting dragon');
 }
 
-function buyHealth() {
 
+function fightBeast() {
+    console.log('Fighting dragon');
 }
 
-function buyWeapon() {}
+
+function fightDragon() {
+    console.log('Fighting dragon');
+}
 
