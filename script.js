@@ -33,7 +33,24 @@ const weapons = [{
         damage: 100,
         price: 200
     }
-]
+];
+
+const monsters = [{
+        name: 'slime',
+        level: 2,
+        health: 20
+    }
+    ,{
+        name: 'fanged beast',
+        level: 8,
+        health: 60
+    }
+    ,{
+        name: 'dragon',
+        level: 20,
+        health: 300
+    }
+];
 
 // Initialize the game state
 const locations = [
